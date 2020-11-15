@@ -108,7 +108,7 @@ let fire4X = Math.floor(Math.random() * (canvas.width - 50));
 
 // Create the game objects
 var hero = {
-  speed: 64, // movement speed of hero in pixels per second
+  speed: 128, // movement speed of hero in pixels per second
 };
 
 // Handle keyboard controls
@@ -144,30 +144,30 @@ var reset = function () {
 var update = function (modifier) {
   if (keysDown["ArrowUp"]) {
     if (hero.y > 0) {
-      hero.y = hero.y - 2;
+      hero.y = hero.y - 4;
     }
   }
   if (keysDown["ArrowDown"]) {
     if (hero.y < 425) {
-      hero.y = hero.y + 2;
+      hero.y = hero.y + 4;
     }
   }
   if (keysDown["ArrowLeft"]) {
     if (hero.x > 0) {
-      hero.x = hero.x - 2;
+      hero.x = hero.x - 4;
     }
   }
   if (keysDown["ArrowRight"]) {
-    if (hero.x < 450) hero.x = hero.x + 2;
+    if (hero.x < 450) hero.x = hero.x + 3;
   }
   //speed of met
-  met1Y = met1Y + 1.25;
-  met2Y = met2Y + 1.35;
-  met3Y = met3Y + 1.45;
-  fire1Y = fire1Y + 2.5;
-  fire2Y = fire2Y + 2;
-  fire3Y = fire3Y + 1.75;
-  fire4Y = fire4Y + 1;
+  met1Y = met1Y + 3.25;
+  met2Y = met2Y + 3.35;
+  met3Y = met3Y + 3.45;
+  fire1Y = fire1Y + 5.5;
+  fire2Y = fire2Y + 5;
+  fire3Y = fire3Y + 5.75;
+  fire4Y = fire4Y + 5;
 
   if (met1Y > canvas.height) {
     met1X = Math.floor(Math.random() * (canvas.width - 50));
