@@ -103,8 +103,20 @@ fire4Image.onload = function () {
 };
 fire4Image.src = "images/fire4.png";
 
-let fire4Y = -90;
+let fire4Y = -200;
 let fire4X = Math.floor(Math.random() * (canvas.width - 50));
+
+//load spaceship
+var spaceshipReady = false;
+spaceshipImage = new Image();
+spaceshipImage.onload = function () {
+  // show the fire4 image
+  spaceship = true;
+};
+fire4Image.src = "images/spaceship.png";
+
+let spaceshipY = -90;
+let spaceshipX = Math.floor(Math.random() * (canvas.width - 50));
 
 // Create the game objects
 var hero = {
@@ -161,13 +173,14 @@ var update = function (modifier) {
     if (hero.x < 450) hero.x = hero.x + 3;
   }
   //speed of met
-  met1Y = met1Y + 3.25;
-  met2Y = met2Y + 3.35;
-  met3Y = met3Y + 3.45;
-  fire1Y = fire1Y + 5.5;
-  fire2Y = fire2Y + 5;
-  fire3Y = fire3Y + 5.75;
-  fire4Y = fire4Y + 5;
+  met1Y = met1Y + 1.25;
+  met2Y = met2Y + 1.35;
+  met3Y = met3Y + 1.45;
+  fire1Y = fire1Y + 3.5;
+  fire2Y = fire2Y + 3;
+  fire3Y = fire3Y + 3.75;
+  fire4Y = fire4Y + 1;
+  spaceshipY = spaceshipY + 0.75;
 
   if (met1Y > canvas.height) {
     met1X = Math.floor(Math.random() * (canvas.width - 50));
@@ -197,6 +210,10 @@ var update = function (modifier) {
   if (fire4Y > canvas.height) {
     fire4X = Math.floor(Math.random() * (canvas.width - 50));
     fire4Y = -80;
+  }
+  if (spaceshipY > canvas.height) {
+    spaceshipX = Math.floor(Math.random() * (canvas.width - 50));
+    spaceshipY = -80;
   }
 };
 
@@ -229,6 +246,9 @@ var render = function () {
   }
   if (fire4Ready) {
     ctx.drawImage(fire4Image, fire4X, fire4Y);
+  }
+  if (spaceshipReady) {
+    ctx.drawImage(spaceshipImage, spaceshipX, spaceshipY);
   }
 
   // Display score and time
@@ -323,6 +343,15 @@ var main = function () {
     fire4X < hero.x + 50 &&
     hero.y - 128 < fire4Y &&
     fire4Y < hero.y + 50
+  ) {
+    alert("Gameover");
+    return;
+  }
+  if (
+    hero.x - 80 < spaceshipX &&
+    spaceshipX < hero.x + 50 &&
+    hero.y - 60 < spaceshipY &&
+    spaceshipY < hero.y + 50
   ) {
     alert("Gameover");
     return;
